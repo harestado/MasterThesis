@@ -12,7 +12,7 @@ import os
 seed = 42
 torch.manual_seed(1337)
 
-def train_model(unet, device, trainloader, valloader, N_EPOCHS, learning_rate, dropout_rate, layer_size):
+def train_model(unet, device, trainloader, valloader, N_EPOCHS, learning_rate, dropout_rate, layer_size, mode):
     
     # y = []
     # for data in trainloader:
@@ -132,22 +132,43 @@ def train_model(unet, device, trainloader, valloader, N_EPOCHS, learning_rate, d
         print('{} | Epoch {}/{} | Train loss {:.7f} | Val loss {:.7f} | Train acc {:.3f} | Val acc {:.3f} | Train acc (bal) {:.3f} | Val acc (bal) {:.3f}'.format(
                     datetime.now().time().strftime("%H:%M:%S"), epoch, N_EPOCHS, loss_train / n_batch_train, current_val_loss, current_acc_train, current_acc_val, current_bal_acc_train, current_bal_acc))
         
-        if(current_bal_acc > best_bal_acc):
-            best_params = deepcopy(unet.state_dict())
-            model_name = data_dir + '/best_model_0' + str(floor(current_bal_acc*100000)) + '_bal.pt'
-            torch.save(unet, model_name)
-            print('New best bal acc:', current_bal_acc, end='  -----------  ')
-            print('Old bal acc:' , best_bal_acc)
-            best_bal_acc = current_bal_acc
-            best_val_loss = current_val_loss
-            best_epoch = epoch
-        elif(current_bal_acc == best_bal_acc) and (current_val_loss < best_val_loss):
-            best_params = deepcopy(unet.state_dict())
-            model_name = data_dir + '/best_model_0' + str(floor(current_bal_acc*100000)) + '_bal.pt'
-            torch.save(unet, model_name)
-            print('Saving model with lower loss:', current_val_loss)
-            best_val_loss = current_val_loss
-            best_epoch = epoch
+        if(mode=='bal'):
+            if(current_bal_acc > best_bal_acc):
+                best_params = deepcopy(unet.state_dict())
+                model_name = data_dir + '/best_model_0' + str(floor(current_bal_acc*100000)) + '_bal.pt'
+                torch.save(unet, model_name)
+                print('New best bal acc:', current_bal_acc, end='  -----------  ')
+                print('Old bal acc:' , best_bal_acc)
+                best_bal_acc = current_bal_acc
+                best_val_loss = current_val_loss
+                best_epoch = epoch
+            elif(current_bal_acc == best_bal_acc) and (current_val_loss < best_val_loss):
+                best_params = deepcopy(unet.state_dict())
+                model_name = data_dir + '/best_model_0' + str(floor(current_bal_acc*100000)) + '_bal.pt'
+                torch.save(unet, model_name)
+                print('Saving model with lower loss:', current_val_loss)
+                best_val_loss = current_val_loss
+                best_epoch = epoch
+        elif(mode=='acc'):
+            if(current_acc_val > best_acc_val):
+                best_params = deepcopy(unet.state_dict())
+                model_name = 'models/best_model_' + str(learning_rate) + '_' + str(dropout_rate) + '_' +  str(layer_size) + '_0' + str(floor(current_acc_val*100000)) + '.pt'
+                torch.save(unet, model_name)
+                print('New best acc:', current_acc_val, end='  -----------  ')
+                print('Old acc:' , best_acc_val)
+                best_acc_val = current_acc_val
+                best_val_loss = current_val_loss
+                best_epoch = epoch
+            elif(current_acc_val == best_acc_val) and (current_val_loss < best_val_loss):
+                best_params = deepcopy(unet.state_dict())
+                model_name = 'models/best_model_' + str(learning_rate) + '_' + str(dropout_rate) + '_' +  str(layer_size) + '_0' + str(floor(current_acc_val*100000)) + '.pt'
+                torch.save(unet, model_name)
+                print('Saving model with lower loss with val acc:', current_acc_val, 'and train acc:', current_acc_train)
+                best_val_loss = current_val_loss
+                best_epoch = epoch
+        else:
+            print('Parameter "mode" is', str(mode), ', needs to be "acc" or "bal".')
+            return None
 
     print('Finished Training')
     print('---------------------')
@@ -161,4 +182,5 @@ def train_model(unet, device, trainloader, valloader, N_EPOCHS, learning_rate, d
     torch.save(balanced_accuracies, data_dir + '/bal_acc_val')
     torch.save(balanced_accuracies_train, data_dir + '/bal_acc_train')
     print('Saved losses and accuracies')
+
     return best_params, losses_val, losses_train, accuracies_val, accuracies_train, balanced_accuracies, balanced_accuracies_train, best_epoch
