@@ -9,14 +9,14 @@
 
 % The directory of the folder containing the subjects
 data_dir = 'C:\Users\oscar\OneDrive - University of Bergen\Documents\Master\vsc\my_scan\fMRI_231207_ERC2VF_100\';
-
+% Need to add the correct path for both anat, func and spm12 standard brain!
 subjects = 1;
 
 for s = subjects
 
     % Saves the images in easy-to-use variables for later
-    anat = [data_dir '002_Sag_FSPGR_3D_192z_192x_TE_min_full\002_Sag_FSPGR_3D_192z_192x_TE_min_full.nii'];
-    func = [data_dir '005_fMRI_default-pulsm_ling\005_fMRI_default-pulsm_ling.nii'];
+    anat = [data_dir s '002_Sag_FSPGR_3D_192z_192x_TE_min_full\002_Sag_FSPGR_3D_192z_192x_TE_min_full.nii'];
+    func = [data_dir s '005_fMRI_default-pulsm_ling\005_fMRI_default-pulsm_ling.nii'];
 
     %% Preprocessing
     % The preprocessing steps themselves
