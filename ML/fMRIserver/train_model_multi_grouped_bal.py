@@ -14,24 +14,24 @@ torch.manual_seed(1337)
 
 def train_model(unet, device, trainloader, valloader, N_EPOCHS, learning_rate, dropout_rate, layer_size, mode):
     
-    # y = []
-    # for data in trainloader:
-    #     # Extract labels from the batch
-    #     inputs, labels = data[0], data[1]
-    #     # inputs, labels = inputs.to(device), labels.to(device)
-    #     ls = deepcopy(labels)
-    #     ls = ls.to('cpu')
-    #     y.append(ls)
-    # y = torch.cat(y)
-    # y = y.to('cpu')
-    # y = y.numpy()
-    # y_unique, y_counts = np.unique(y, return_counts=True)
-    # print(y_unique, y_counts)
-    # class_weights = compute_class_weight(class_weight = 'balanced', classes = y_unique, y = y)
-    # print(class_weights)
-    # ls, y = None, None
+    y = []
+    for data in trainloader:
+        # Extract labels from the batch
+        inputs, labels = data[0], data[1]
+        # inputs, labels = inputs.to(device), labels.to(device)
+        ls = deepcopy(labels)
+        ls = ls.to('cpu')
+        y.append(ls)
+    y = torch.cat(y)
+    y = y.to('cpu')
+    y = y.numpy()
+    y_unique, y_counts = np.unique(y, return_counts=True)
+    print(y_unique, y_counts)
+    class_weights = compute_class_weight(class_weight = 'balanced', classes = y_unique, y = y)
+    print(class_weights)
+    ls, y = None, None
     
-    class_weights = [0.65833333, 0.75238095, 6.58333333]
+    # class_weights = [0.65833333, 0.75238095, 6.58333333]
     class_weights = torch.tensor(class_weights, dtype=torch.float)
     class_weights = class_weights.to(device)
 
