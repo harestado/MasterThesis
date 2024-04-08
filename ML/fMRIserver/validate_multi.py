@@ -5,7 +5,7 @@ seed = 42
 torch.manual_seed(1337)
 
 def validate(best_model, device, dataloader):
-    class_weights = [0.65833333, 0.75238095, 6.58333333]
+    # class_weights = [0.65833333, 0.75238095, 6.58333333]
     class_weights = torch.tensor(class_weights, dtype=torch.float)
     class_weights = class_weights.to(device)
     criterion = torch.nn.CrossEntropyLoss(weight=class_weights)
