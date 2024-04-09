@@ -1,5 +1,5 @@
 # Master's Thesis
-Repo for my Master's Thesis as UiB/MMIV.
+Repo for my Master's Thesis at UiB/MMIV.
 Machine Learning on fMRI images of patients with schizophrenia.
 
 ## Contains
