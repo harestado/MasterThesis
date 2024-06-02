@@ -1,16 +1,13 @@
 %-----------------------------------------------------------------------
-% Job saved on 06-Nov-2023
-% spm SPM - SPM12 (7771)
-% cfg_basicio BasicIO - Unknown
 % Creator: Oscar Alm Harestad
 % Made to fit ERC-structured data
 %-----------------------------------------------------------------------
 %% Preparation
 
 % The directory of the folder containing the subjects
-data_dir = 'C:\Users\oscar\OneDrive - University of Bergen\Documents\Master\vsc\my_scan\fMRI_231207_ERC2VF_100\';
+data_dir = _
 % Need to add the correct path for both anat, func and spm12 standard brain!
-subjects = 1;
+subjects = _;
 
 for s = subjects
 
@@ -59,27 +56,27 @@ for s = subjects
     matlabbatch{3}.spm.spatial.preproc.channel.biasreg = 0.001;
     matlabbatch{3}.spm.spatial.preproc.channel.biasfwhm = 60;
     matlabbatch{3}.spm.spatial.preproc.channel.write = [0 1];
-    matlabbatch{3}.spm.spatial.preproc.tissue(1).tpm = {'C:\Users\oscar\OneDrive - University of Bergen\Documents\Master\MATLAB\spm12\spm12\tpm\TPM.nii,1'};
+    matlabbatch{3}.spm.spatial.preproc.tissue(1).tpm = {'MATLAB\spm12\spm12\tpm\TPM.nii,1'};
     matlabbatch{3}.spm.spatial.preproc.tissue(1).ngaus = 1;
     matlabbatch{3}.spm.spatial.preproc.tissue(1).native = [1 0];
     matlabbatch{3}.spm.spatial.preproc.tissue(1).warped = [0 0];
-    matlabbatch{3}.spm.spatial.preproc.tissue(2).tpm = {'C:\Users\oscar\OneDrive - University of Bergen\Documents\Master\MATLAB\spm12\spm12\tpm\TPM.nii,2'};
+    matlabbatch{3}.spm.spatial.preproc.tissue(2).tpm = {'MATLAB\spm12\spm12\tpm\TPM.nii,2'};
     matlabbatch{3}.spm.spatial.preproc.tissue(2).ngaus = 1;
     matlabbatch{3}.spm.spatial.preproc.tissue(2).native = [1 0];
     matlabbatch{3}.spm.spatial.preproc.tissue(2).warped = [0 0];
-    matlabbatch{3}.spm.spatial.preproc.tissue(3).tpm = {'C:\Users\oscar\OneDrive - University of Bergen\Documents\Master\MATLAB\spm12\spm12\tpm\TPM.nii,3'};
+    matlabbatch{3}.spm.spatial.preproc.tissue(3).tpm = {'MATLAB\spm12\spm12\tpm\TPM.nii,3'};
     matlabbatch{3}.spm.spatial.preproc.tissue(3).ngaus = 2;
     matlabbatch{3}.spm.spatial.preproc.tissue(3).native = [1 0];
     matlabbatch{3}.spm.spatial.preproc.tissue(3).warped = [0 0];
-    matlabbatch{3}.spm.spatial.preproc.tissue(4).tpm = {'C:\Users\oscar\OneDrive - University of Bergen\Documents\Master\MATLAB\spm12\spm12\tpm\TPM.nii,4'};
+    matlabbatch{3}.spm.spatial.preproc.tissue(4).tpm = {'MATLAB\spm12\spm12\tpm\TPM.nii,4'};
     matlabbatch{3}.spm.spatial.preproc.tissue(4).ngaus = 3;
     matlabbatch{3}.spm.spatial.preproc.tissue(4).native = [1 0];
     matlabbatch{3}.spm.spatial.preproc.tissue(4).warped = [0 0];
-    matlabbatch{3}.spm.spatial.preproc.tissue(5).tpm = {'C:\Users\oscar\OneDrive - University of Bergen\Documents\Master\MATLAB\spm12\spm12\tpm\TPM.nii,5'};
+    matlabbatch{3}.spm.spatial.preproc.tissue(5).tpm = {'MATLAB\spm12\spm12\tpm\TPM.nii,5'};
     matlabbatch{3}.spm.spatial.preproc.tissue(5).ngaus = 4;
     matlabbatch{3}.spm.spatial.preproc.tissue(5).native = [1 0];
     matlabbatch{3}.spm.spatial.preproc.tissue(5).warped = [0 0];
-    matlabbatch{3}.spm.spatial.preproc.tissue(6).tpm = {'C:\Users\oscar\OneDrive - University of Bergen\Documents\Master\MATLAB\spm12\spm12\tpm\TPM.nii,6'};
+    matlabbatch{3}.spm.spatial.preproc.tissue(6).tpm = {'MATLAB\spm12\spm12\tpm\TPM.nii,6'};
     matlabbatch{3}.spm.spatial.preproc.tissue(6).ngaus = 2;
     matlabbatch{3}.spm.spatial.preproc.tissue(6).native = [0 0];
     matlabbatch{3}.spm.spatial.preproc.tissue(6).warped = [0 0];
