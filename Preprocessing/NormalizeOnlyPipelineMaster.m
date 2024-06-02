@@ -12,8 +12,8 @@ subjects = _;
 for s = subjects
 
     % Saves the images in easy-to-use variables for later
-    anat = [data_dir s '002_Sag_FSPGR_3D_192z_192x_TE_min_full\002_Sag_FSPGR_3D_192z_192x_TE_min_full.nii'];
-    func = [data_dir s '005_fMRI_default-pulsm_ling\005_fMRI_default-pulsm_ling.nii'];
+    anat = [data_dir s '_.nii'];
+    func = [data_dir s '_.nii'];
 
     %% Preprocessing
     % The preprocessing steps themselves
