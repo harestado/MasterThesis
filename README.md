@@ -1,6 +1,6 @@
 # Master's Thesis
-Repo for code used in my Master's Thesis at UiB/MMIV.
-Machine Learning on fMRI images of patients with schizophrenia.
+Repo for code used in my Master's Thesis at UiB.
+Machine Learning on fMRI images of subjects with schizophrenia.
 
 ## Contains
-A folder for preprocessing (mainly in MATLAB) and a folder for the ML part (mainly in python/jupyter notebook).
+A folder for preprocessing (MATLAB) and a folder for ML (python/jupyter notebook).
